@@ -15,8 +15,8 @@ public class ElevatorController {
     private final ElevatorStatusGetService goodElevatorStatusGetService;
     private final ElevatorStatusGetService badElevatorStatusGetService;
 
-    public ElevatorController(@Qualifier("goodApartmentService") ElevatorStatusGetService goodElevatorStatusGetService,
-                              @Qualifier("badApartmentService") ElevatorStatusGetService badElevatorStatusGetService) {
+    public ElevatorController(@Qualifier("goodElevatorStatusGetService") ElevatorStatusGetService goodElevatorStatusGetService,
+                              @Qualifier("badElevatorStatusGetService") ElevatorStatusGetService badElevatorStatusGetService) {
         this.goodElevatorStatusGetService = goodElevatorStatusGetService;
         this.badElevatorStatusGetService = badElevatorStatusGetService;
     }

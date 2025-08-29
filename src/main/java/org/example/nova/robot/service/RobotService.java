@@ -27,7 +27,7 @@ public class RobotService {
     }
 
     // TODO 아래 메서드를 사용해 적절한 아파트 단지서버에 HTTP 요청을 보내주세요.
-    private String getApartmentServerUrl(String apartmentId) {
+    private String getApartmentServerUrl(String apartmentId) { // 1 or 2
         if (apartmentId.equals("1")) {
             return "http://localhost:8080/apartment/good";
         }

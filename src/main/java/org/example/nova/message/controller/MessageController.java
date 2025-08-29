@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/messages")
 public class MessageController {
 
     private final MessageService messageService;
@@ -17,19 +16,15 @@ public class MessageController {
         this.messageService = messageService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<MessageResponse> getMessage(@PathVariable Long id) {
+    @GetMapping("/messages/{id}")
+    public MessageResponse getMessage(@PathVariable Long id) {
         MessageResponse messageResponse = messageService.getMessage(id);
-        return ResponseEntity.ok(messageResponse);
+        return messageResponse;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createMessage(@RequestBody
-                                              MessageCreateRequest messageCreateRequest, UriComponentsBuilder uriBuilder) {
-        Long messageId = messageService.createMessage(messageCreateRequest);
-        return ResponseEntity.created(uriBuilder.path("/messages/" + messageId)
-                        .build()
-                        .toUri()
-                ).build();
+    @PostMapping("/messages")
+    public void createMessage(@RequestBody MessageCreateRequest messageCreateRequest) {
+        messageService.createMessage(messageCreateRequest);
     }
 }
+
