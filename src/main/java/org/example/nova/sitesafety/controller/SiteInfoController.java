@@ -2,9 +2,12 @@ package org.example.nova.sitesafety.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.nova.sitesafety.model.SiteCreateReqDTO;
 import org.example.nova.sitesafety.model.SiteDetailResDTO;
 import org.example.nova.sitesafety.service.SiteInfoService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +28,13 @@ public class SiteInfoController {
         return ResponseEntity.ok(result);
     }
 
-
+    @Operation(summary = "SS090102 현장 등록")
+    @PostMapping("/sites")
+    public ResponseEntity<Void> createSiteInfo(
+            @RequestBody SiteCreateReqDTO req
+    ) {
+        siteInfoService.createSiteInfo(req);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 
 }

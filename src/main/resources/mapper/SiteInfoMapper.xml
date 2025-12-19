@@ -15,4 +15,38 @@
         WHERE SITE_CODE = #{siteCode}
     </select>
 
+    <!-- 마지막 일련번호 조회 -->
+    <select id="selectLastSerialNum" resultType="int">
+        SELECT LAST_SERIAL_NUM
+        FROM T_SITE_CODE
+        WHERE REGION_CODE = #{regionCode}
+        AND CITY_CODE = #{cityCode}
+    </select>
+
+    <!-- 현장 등록 -->
+    <insert id="insertSiteInfo" parameterType="SiteCreateReqDTO">
+        INSERT INTO T_SITE_INFO (
+            SITE_CODE,
+            SITE_NAME,
+            LATITUDE,
+            LONGITUDE,
+            ADDRESS,
+            CAM_SERIAL_NUM
+            ) VALUES (
+            #{siteCode},
+            #{siteName},
+            #{latitude},
+            #{longitude},
+            #{address},
+            0
+        )
+    </insert>
+
+    <update id="updateLastSerialNum" parameterType="SerialNumUpdateDTO">
+        UPDATE T_SITE_CODE
+        SET LAST_SERIAL_NUM = #{lastSerialNum}
+        WHERE REGION_CODE = #{regionCode}
+        AND CITY_CODE = #{cityCode}
+    </update>
+
 </mapper>
